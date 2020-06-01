@@ -34,19 +34,18 @@ def create_buggy():
       flag_pattern=request.form['flag_pattern']
       msg = f"qty_wheels={qty_wheels}" 
       if qty_wheels.isdigit()==True:
-
         with sql.connect(DATABASE_FILE) as con:
-          cur = con.cursor()
-          cur.execute("UPDATE buggies set qty_wheels=?,flag_color=?,flag_color_secondary=?,flag_pattern=?, WHERE id=?",  (qty_wheels, flag_color,flag_color_secondary,flag_pattern
+           cur = con.cursor()
+           cur.execute("UPDATE buggies set qty_wheels=?,flag_color=?,flag_color_secondary=?,flag_pattern=?, WHERE id=?",  (qty_wheels, flag_color,flag_color_secondary,flag_pattern
           , DEFAULT_BUGGY_ID))
-          con.commit()
-          msg = "Record successfully saved"
-      except:
-        con.rollback()
-        msg = "error in update operation"
-      finally:
-        con.close()
-        return render_template("updated.html", msg = msg)
+      con.commit()
+      msg = "Record successfully saved"
+    except:
+      con.rollback()
+      msg = "error in update operation"
+    finally:
+      con.close()
+      return render_template("updated.html", msg = msg)
       
 
 #------------------------------------------------------------
