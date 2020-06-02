@@ -33,21 +33,27 @@ def create_buggy():
     return render_template("buggy-form.html",buggy = record)
   elif request.method == 'POST':
     msg=""
+    qty_wheels=request.form['qty_wheels']
+    hamster_booster=request.form['hamster_booster']
+    total_cost= 5* int(hamster_booster)
+    flag_color=request.form['flag_color']
+    flag_color_secondary=request.form['flag_color_secondary']
+    flag_pattern=request.form['flag_pattern']
+    msg = f"qty_wheels={qty_wheels}" 
     try:
-      qty_wheels = request.form['qty_wheels']
-      hamster_booster=request.form['hamster_booster']
-      total_cost= 5* int(hamster_booster)
-      flag_color=request.form['flag_color']
-      flag_color_secondary=request.form['flag_color_secondary']
-      flag_pattern=request.form['flag_pattern']
-      msg = f"qty_wheels={qty_wheels}" 
+     
       if qty_wheels.isdigit()==True:
         with sql.connect(DATABASE_FILE) as con:
            cur = con.cursor()
-           cur.execute("UPDATE buggies set qty_wheels=?,flag_color=?,flag_color_secondary=?,flag_pattern=?, hamster_booster=?,total_cost=?, WHERE id=?",  (qty_wheels, flag_color,flag_color_secondary,flag_pattern,hamster_booster,total_cost
-          , DEFAULT_BUGGY_ID))
-      con.commit()
-      msg = "Record successfully saved"
+           cur.execute("""UPDATE buggies set 
+           qty_wheels=?,flag_color=?,
+           flag_color_secondary=?,flag_pattern=?, 
+           hamster_booster=?,total_cost=? WHERE id=?
+            """
+            ,(qty_wheels, flag_color,flag_color_secondary,
+            flag_pattern,hamster_booster,total_cost, DEFAULT_BUGGY_ID))
+           con.commit()
+        msg = "Record successfully saved"
     except:
       con.rollback()
       msg = "error in update operation"

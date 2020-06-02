@@ -30,7 +30,8 @@ con.execute("""
     flag_color            VARCHAR(20),
     flag_color_secondary  VARCHAR(20),
     flag_pattern          VARCHAR(20), 
-    hamster_booster       INTEGER
+    hamster_booster       INTEGER,
+    total_cost            INTEGER
       
 
   )
