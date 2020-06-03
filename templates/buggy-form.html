@@ -4,7 +4,10 @@
 
 {% block content %}
 
-  <h1>Make buggy</h1>
+  <h1>Make buggy</h1> 
+  <p>
+    {{ msg }}
+  </p>
   <form action="/new" method="post">
     <label for="qty_wheels">Number of wheel:</label>
     <input type="text" name="qty_wheels" value ="{{ buggy['qty_wheels']}}" />
