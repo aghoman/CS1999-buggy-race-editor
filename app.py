@@ -33,10 +33,12 @@ def create_buggy():
     return render_template("buggy-form.html",buggy = record)
   elif request.method == 'POST':
     msg=""
+    violation=""
     qty_wheels=request.form['qty_wheels']
     if not qty_wheels.isdigit():
       msg = f"This unfortunately, is not a number :{qty_wheels}" 
-      return render_template("buggy-form.html", msg = msg, buggy=record)
+      return render_template("buggy-form.html", msg = msg, buggy=record) 
+      
    
        
 
@@ -55,6 +57,14 @@ def create_buggy():
     total_cost= 5* int(hamster_booster)
   
     
+    if int(qty_wheels) %2 != 0: 
+      print("FIXME THIS IS NOT OK",qty_wheels)
+      msg= "This data violates the game rule stating that the number of wheels must be even " 
+      return render_template("buggy-form.html", buggy= record, msg=msg )
+
+      
+
+      
 
    
     try:
@@ -74,7 +84,7 @@ def create_buggy():
       msg = "error in update operation"
     finally:
       con.close()
-      return render_template("updated.html", msg = msg)
+      return render_template("updated.html", msg = msg )
       
 
 #------------------------------------------------------------
