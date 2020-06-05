@@ -70,13 +70,16 @@ def create_buggy():
     try:
         with sql.connect(DATABASE_FILE) as con:
            cur = con.cursor()
-           cur.execute("""UPDATE buggies set 
-           qty_wheels=?,flag_color=?,
-           flag_color_secondary=?,flag_pattern=?, 
-           hamster_booster=?, total_cost=? WHERE id=?
-            """
-            ,(qty_wheels, flag_color,flag_color_secondary,
-            flag_pattern,hamster_booster,total_cost, DEFAULT_BUGGY_ID))
+           #cur.execute("""UPDATE buggies set 
+           #qty_wheels=?, flag_color=?,
+           #flag_color_secondary=?,flag_pattern=?, 
+           #hamster_booster=?, total_cost=? WHERE id=?
+           # """
+          #,(qty_wheels, flag_color,
+          #flag_color_secondary,
+          #flag_pattern,hamster_booster,total_cost, DEFAULT_BUGGY_ID))
+           print("FIXME! hamster booster  is ", hamster_booster)
+           cur.execute("INSERT INTO buggies (qty_wheels,hamster_booster,flag_color,total_cost,flag_pattern,flag_color_secondary) VALUES (?,?,?,?,?,?)", (qty_wheels,hamster_booster,flag_color,total_cost,flag_pattern,flag_color_secondary,))
            con.commit()
         msg = "Record successfully saved" 
     except:
@@ -96,8 +99,8 @@ def show_buggies():
   con.row_factory = sql.Row
   cur = con.cursor()
   cur.execute("SELECT * FROM buggies")
-  record = cur.fetchone(); 
-  return render_template("buggy.html", buggy = record)
+  records = cur.fetchall(); 
+  return render_template("buggy.html", buggies = records)
 
 #------------------------------------------------------------
 # a page for displaying the buggy
