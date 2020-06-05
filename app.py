@@ -55,6 +55,7 @@ def create_buggy():
     flag_color_secondary=request.form['flag_color_secondary']
     flag_pattern=request.form['flag_pattern'] 
     total_cost= 5* int(hamster_booster)
+    buggy_id= request.form['id']
   
     
     if int(qty_wheels) %2 != 0: 
@@ -68,18 +69,21 @@ def create_buggy():
 
    
     try:
+
         with sql.connect(DATABASE_FILE) as con:
            cur = con.cursor()
-           #cur.execute("""UPDATE buggies set 
-           #qty_wheels=?, flag_color=?,
-           #flag_color_secondary=?,flag_pattern=?, 
-           #hamster_booster=?, total_cost=? WHERE id=?
-           # """
-          #,(qty_wheels, flag_color,
-          #flag_color_secondary,
-          #flag_pattern,hamster_booster,total_cost, DEFAULT_BUGGY_ID))
-           print("FIXME! hamster booster  is ", hamster_booster)
-           cur.execute("INSERT INTO buggies (qty_wheels,hamster_booster,flag_color,total_cost,flag_pattern,flag_color_secondary) VALUES (?,?,?,?,?,?)", (qty_wheels,hamster_booster,flag_color,total_cost,flag_pattern,flag_color_secondary,))
+           if buggy_id.isdigit():
+             cur.execute("""UPDATE buggies set 
+             qty_wheels=?, flag_color=?,
+             flag_color_secondary=?,flag_pattern=?, 
+             hamster_booster=?, total_cost=? WHERE id=?
+          """
+            ,(qty_wheels, flag_color,
+            flag_color_secondary,
+            flag_pattern,hamster_booster,total_cost, buggy_id))
+           else:
+            print("FIXME! hamster booster  is ", hamster_booster)
+            cur.execute("INSERT INTO buggies (qty_wheels,hamster_booster,flag_color,total_cost,flag_pattern,flag_color_secondary) VALUES (?,?,?,?,?,?)", (qty_wheels,hamster_booster,flag_color,total_cost,flag_pattern,flag_color_secondary,))
            con.commit()
         msg = "Record successfully saved" 
     except:
@@ -103,11 +107,16 @@ def show_buggies():
   return render_template("buggy.html", buggies = records)
 
 #------------------------------------------------------------
-# a page for displaying the buggy
+# a page for editing the buggy
 #------------------------------------------------------------
-@app.route('/new')
-def edit_buggy():
-  return render_template("buggy-form.html")
+@app.route('/edit/<buggy_id>')
+def edit_buggy(buggy_id):
+  con = sql.connect(DATABASE_FILE)
+  con.row_factory = sql.Row
+  cur = con.cursor()
+  cur.execute("SELECT * FROM buggies WHERE id=?", (buggy_id,))
+  record = cur.fetchone(); 
+  return render_template("buggy-form.html",buggy=record)
 
 
 #------------------------------------------------------------
