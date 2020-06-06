@@ -30,7 +30,7 @@ def create_buggy():
   record = cur.fetchone();
 
   if request.method == 'GET':
-    return render_template("buggy-form.html",buggy = record)
+    return render_template("buggy-form.html",buggy = None)
   elif request.method == 'POST':
     msg=""
     violation=""

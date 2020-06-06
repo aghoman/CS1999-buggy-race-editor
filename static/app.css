@@ -12,8 +12,8 @@ body {
     45deg,
     #ffffee,
     #ffffee 2em,
-    #eeeeee 2em,
-    #eeeeee 4em
+    #5F9EA0 2em,
+    #5F9EA0 4em
   );
 }
 .main-content {
@@ -34,7 +34,7 @@ a.button, input.button {
   margin:0.5em;
   border-radius: 0.25em;
   text-decoration: none;
-  background-color: white;
+  background-color: #5F9EA0;
   color: black;
   box-shadow: 5px 5px 5px #999999;
 }
