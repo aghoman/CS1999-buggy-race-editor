@@ -33,7 +33,9 @@ def create_buggy():
     return render_template("buggy-form.html",buggy = None)
   elif request.method == 'POST':
     msg=""
-    violation=""
+#------------------------------------------------------------
+# checks the input for the wheel quantity is a digit
+#------------------------------------------------------------
     qty_wheels=request.form['qty_wheels']
     if not qty_wheels.isdigit():
       msg = f"This unfortunately, is not a number :{qty_wheels}" 
@@ -41,7 +43,9 @@ def create_buggy():
       
    
        
-
+#------------------------------------------------------------
+# validates the number of hamster boosters
+#------------------------------------------------------------
     hamster_booster=request.form['hamster_booster'] 
     if not  hamster_booster.isdigit() : 
       msg = f"This unfortunately, is not valid :{hamster_booster}" 
@@ -54,10 +58,17 @@ def create_buggy():
     flag_color=request.form['flag_color']
     flag_color_secondary=request.form['flag_color_secondary']
     flag_pattern=request.form['flag_pattern'] 
+  
+#------------------------------------------------------------
+# calculates the toal cost of the hamster boosters
+#------------------------------------------------------------
     total_cost= 5* int(hamster_booster)
     buggy_id= request.form['id']
   
-    
+#------------------------------------------------------------
+# checks that the wheel quantity is even, aligning with the game rule for this element
+# of the buggy 
+#------------------------------------------------------------ 
     if int(qty_wheels) %2 != 0: 
       print("FIXME THIS IS NOT OK",qty_wheels)
       msg= "This data violates the game rule stating that the number of wheels must be even " 
@@ -65,7 +76,11 @@ def create_buggy():
 
       
 
-      
+#------------------------------------------------------------
+# this code updates the database with the values filled in the form if a buggy id
+#is a digit and exists otherwise, a new record is inserted into the database
+#alongside the relevant fields for the record
+#------------------------------------------------------------      
 
    
     try:
