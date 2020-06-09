@@ -60,7 +60,7 @@ def create_buggy():
     flag_pattern=request.form['flag_pattern'] 
   
 #------------------------------------------------------------
-# calculates the toal cost of the hamster boosters
+# calculates the total cost of the hamster boosters
 #------------------------------------------------------------
     total_cost= 5* int(hamster_booster)
     buggy_id= request.form['id']
