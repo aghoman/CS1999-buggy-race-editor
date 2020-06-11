@@ -94,7 +94,8 @@
       I decided to add in hamster boosters and a secondary flag colour as well as flag pattern. 
     </p>
     <p>
-      I didn't add more in because
+      I didn't add more in because I didn't want to over-complicate my validation at that stage in 
+      the development process. 
     </p>
   </div>
   <div class="task">
@@ -123,8 +124,8 @@
     <h2>2-EDIT Edit the record by loading its current values into the form</h2>
     <p>
       In order to complete this task I copied the value for the wheel quantity 
-       from the buggy html page and into the buggy 
-      form html page and put the value of the wheel quantity 
+       from the buggy html page and into the buggy form html page and put 
+       the value of the wheel quantity 
     </p>
     <p>
       I only did this for the wheel quantity in the form.
@@ -135,7 +136,8 @@
           I added in break tags to the html form to improve the layout of the form.
         </p>
         <p>
-          <!-- sentence(s) on anything interesting/incomplete you did -->
+          I could have probably changed the font style for the buggy editor. but I decided to possibly
+          attempt this later on. 
         </p>
       </div>
       <div class="task">
@@ -149,7 +151,12 @@
         <p>
           I made sure to place this variable close to hamster booster variable I made to retrieve the 
           value from the form, so I would not get confused about what the variable actually does. If 
-          I had decided to add more power ups to my buggy editor
+          I had decided to add more power ups to my buggy editor calculating the cost for each item
+          would have become more complicated. I decided to move on after this and attempt the next 
+          phase. As I had pre-loaded the form already with values and I felt as if the auto-fill 
+          task from phase three was something, during that point in development, seemed slightly
+          too challenging for me at the time. So i skipped this task entirely and moved onto 
+          the 3-multi task in phase three instead.
         </p>
       </div>
       <div class="task">
@@ -159,9 +166,24 @@
          SQL statement to my python app.
         </p>
         <p>
+          Before I implemented this feature, a single buggy record was constantly being over-written whenever the 
+          buggy form as filled out.  
           This took me a bit longer than expected as I hadn't set the record to None in the return statement within
           the conditional that checks if a get request has been made. This is so if a buggy's id does not currently exist
-          the buggy form's title can change to inform the user to create a new buggy.
+          the buggy form's title can change to inform the user to create a new buggy. I changed the fetchone command to 
+          fetchall so all the buggy records could be obtained from the database.
+          <p>
+            Before doing any of this I deleted the database file in the command line with the del command and 
+            then ran the init_db python file in the command line.
+            When I did manage to get multiple buggies showing at once, I realized that some fields had the None value in them.
+            I managed to fix this once I'd created the links to individually edit each buggy, adding in values that I had 
+            previously left blank, to fix this issue. Before I did this I added a print statement that would print out the 
+            wheel quantity, to check that the value was being retrieved from the buggy form and going into the code's TRY
+            block.
+
+          </p>
+          
+           
         </p>
       </div>
 
