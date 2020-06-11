@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .cs1999-tasks {
+    border-top: 1px solid black;
+    margin-top: 4em;
+  }
+  .cs1999-tasks .task {
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid black;
+  }
+  .cs1999-tasks .task h2 {
+    border-bottom: 3px solid gray;
+  }
+  h1 {text-align: center;}
+  
+</style>
+
+
+
+<h1>Welcome to the buggy race editor </h1> 
+
+<p>
+    This buggy editor, allows buggies to be edited and created in order to
+    be entered into a race against other buggies. 
+</p>
+ <h2> This editor buggy has the following features :  </h2>
+ <ul>
+    <li>Multiple buggies can be created with the following customisable features:</li> 
+    <ul>
+        <li>flag colour</li> 
+        <li> a secondary flag colour</li>
+        <li> a flag pattern</li>
+        <li> hamster booster quantity</li>
+      </ul>
+
+    <li> Edit aspects each buggy created</li>
+    <li>Retrieve JSON data so buggies can be entered into races</li>
+  </ul>
+<!-- see tech note about the poster:  
+      https://rhul-cs-projects.github.io/CS1999-buggy-race-server/                -->
+<!--                                                                              -->
+<!-- anything you want here: make it beautiful! make it appealing! make it clear! -->
+<!-- you can drop images into static/assets if you want... and access them        -->
+<!-- here with <img src="/static/image-filename.png" alt="diagram" />             -->
+<!--                                                                              -->
+<!-- Of course you can edit static/app.css too if you want. It's your webserver,  -->
+<!--                                                                              -->
+<!-- Maybe... delete all these comments too :-)                                   -->
+
+
+<!-- below this point keep this section tag and paste in a <div> for every        -->
+<!-- task you attempted.                                                          -->
+
+<section class="cs1999-tasks">
+
+  <div class="task">
+    <h2>0-GET</h2>
+    <p>
+      I forked the repo on GitHub and then used <code>git clone</code> to make a local copy onto my machine.
+    </p>
+    <p>
+      Once the repo was on my own machine I was able to commit changes to version control
+      as I went along, and I pushed back up to my GitHub repo once I had gained progress during a part of project phase.
+      
+    </p>
+  </div> 
+  <div class="task">
+    <h2>0-RUN Get app running and view it in a browser</h2>
+    <p>
+        I installed flask eventually on my machine and managed to run the server in my chosen browser
+    </p>
+    <p>
+      I had to add the pip command onto my machine manually before being able to use the 'pip install'
+      command as it didn't exist on my machine beforehand.
+    </p>
+  </div> 
+  <div class="task">
+    <h2>0-CHANGE Make a change to a template and see it appear</h2>
+    <p>
+      In order to complete this task, I decided to change the title of the index html page
+      so I could see a visible change that I had made to the server.
+    </p>
+    <p>
+      As I became more involved with the project, I ended up changing the title of the index html page,
+      that I had edited before after completing the 3-multi task in phase three.
+    </p>
+  </div>
+  <div class="task">
+    <h2>1-ADD Add more data to the form</h2>
+    <p>
+      I decided to add in hamster boosters and a secondary flag colour as well as flag pattern. 
+    </p>
+    <p>
+      I didn't add more in because
+    </p>
+  </div>
+  <div class="task">
+    <h2>1-VALID Add basic data validation</h2>
+    <p>
+      I used isdigit python method on the wheel quantity input to check that the value inputted by the user
+      was a digit  
+    </p>
+    <p>
+      I didn't validate the flag pattern because I found validating using the select option with the html challenging.
+    </p>
+  </div>
+  <div class="task">
+    <h2>1-STYLE Style your editor just how you like it</h2>
+    <p>
+        I changed the colour of the submit button in the css file for the web application
+    </p>
+    <p>
+      I changed the colour of the web app's border eventually using a different css colour value
+      and then changed the colour of the submit button on the buggy form. I was going to change 
+      the background colour of the main page of the web app and the buggy form but I couldn't 
+      find a colour that would nicely complement the new alternating border colour  
+    </p>
+  </div>
+  <div class="task">
+    <h2>2-EDIT Edit the record by loading its current values into the form</h2>
+    <p>
+      In order to complete this task I copied the value for the wheel quantity 
+       from the buggy html page and into the buggy 
+      form html page and put the value of the wheel quantity 
+    </p>
+    <p>
+      I only did this for the wheel quantity in the form.
+    </p>
+    <div class="task">
+        <h2>2-FORM Make the form better</h2>
+        <p>
+          I added in break tags to the html form to improve the layout of the form.
+        </p>
+        <p>
+          <!-- sentence(s) on anything interesting/incomplete you did -->
+        </p>
+      </div>
+      <div class="task">
+        <h2>2-COST Calculate and save the game cost of the buggy</h2>
+        <p>
+          I added a total cost variable to my python app file and casted the data type 
+          of the hamster boosters to an integer because the data requested from the buggy form,
+          automatically is a string, so this could be multiplied with the cost value for the total
+          cost of the hamster booster ( in this case , 5)
+        </p>
+        <p>
+          I made sure to place this variable close to hamster booster variable I made to retrieve the 
+          value from the form, so I would not get confused about what the variable actually does. If 
+          I had decided to add more power ups to my buggy editor
+        </p>
+      </div>
+      <div class="task">
+        <h2>3-MULTI Allow different buggies to be created</h2>
+        <p>
+         At first the previous singular buggy record was being over-written multiple times by the user. I added a insert
+         SQL statement to my python app.
+        </p>
+        <p>
+          This took me a bit longer than expected as I hadn't set the record to None in the return statement within
+          the conditional that checks if a get request has been made. This is so if a buggy's id does not currently exist
+          the buggy form's title can change to inform the user to create a new buggy.
+        </p>
+      </div>
+
+  </div>
+
+
+<!-- this closes the section: keep it in! -->
+</section>
+{% endblock %}

@@ -175,6 +175,14 @@ def delete_buggy():
     con.close()
     return render_template("updated.html", msg = msg)
 
+#-----------------------------------------------------------
+# route to the poster about the project
+#------------------------------------------------------------  
+
+@app.route('/poster')
+def poster():
+   return render_template('poster.html')
+
 
 if __name__ == '__main__':
    app.run(debug = True, host="0.0.0.0")
